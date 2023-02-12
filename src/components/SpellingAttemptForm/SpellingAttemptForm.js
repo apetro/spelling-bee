@@ -1,6 +1,6 @@
 import React from "react";
 
-function SpellingAttemptForm( {attemptSpellingFunction}) {
+function SpellingAttemptForm( {attemptSpellingFunction, gameStatus}) {
   const [userInput, setUserInput] = React.useState("");
 
   function handleFormSubmit(event) {
@@ -10,7 +10,7 @@ function SpellingAttemptForm( {attemptSpellingFunction}) {
   }
 
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form onSubmit={handleFormSubmit} className="guess-input-wrapper">
       <input
         type="text"
         required
@@ -19,8 +19,9 @@ function SpellingAttemptForm( {attemptSpellingFunction}) {
         onChange={(event) => {
           setUserInput(event.target.value);
         }}
+        disabled={gameStatus !== 'running'}
       />
-      <button>Check spelling</button>
+      <button disabled={gameStatus !== 'running'}>Check spelling</button>
     </form>
   );
 }

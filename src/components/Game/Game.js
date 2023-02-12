@@ -48,7 +48,7 @@ function Game() {
   return (
     <>
       <Prompt targetWordObject={targetWord} />
-      <SpellingAttemptForm attemptSpellingFunction={checkSpellingAttempt} />
+      <SpellingAttemptForm attemptSpellingFunction={checkSpellingAttempt} gameStatus={gameStatus} />
       {gameStatus === 'spelled-correctly' && (<CorrectBanner correctWordObject={targetWord} nextWord={nextWord}/>)}
       {gameStatus === 'spelled-incorrectly' && (<WrongBanner correctWordObject={targetWord} nextWord={nextWord}/>)}
       <Statistics
