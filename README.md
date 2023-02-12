@@ -1,4 +1,13 @@
-# Getting Started with Create React App
+# Spelling Bee 🐝
+
+## Acknowledgements
+
+I built this after completing the Word Clone exercise from the Joy of React course, borrowing heavily from there.
+
+In particular, `util.js` is copied wholesale therefrom.
+
+
+----
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
