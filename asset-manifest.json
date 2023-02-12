@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/spelling-bee/static/css/main.903d2da2.css",
+    "main.js": "/spelling-bee/static/js/main.d80f8d25.js",
+    "index.html": "/spelling-bee/index.html",
+    "main.903d2da2.css.map": "/spelling-bee/static/css/main.903d2da2.css.map",
+    "main.d80f8d25.js.map": "/spelling-bee/static/js/main.d80f8d25.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.903d2da2.css",
+    "static/js/main.d80f8d25.js"
+  ]
+}
