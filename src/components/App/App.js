@@ -13,14 +13,27 @@ function App() {
   const [correctSpellingStreakLength, setCorrectSpellingStreakLength] =
     React.useState(0);
 
+  function speakPrompt(wordObject) {
+
+    let wordUtterance = new SpeechSynthesisUtterance(wordObject.word);
+    window.speechSynthesis.speak(wordUtterance);
+
+    let sentenceUtterance = new SpeechSynthesisUtterance(wordObject.inASentence);
+    window.speechSynthesis.speak(sentenceUtterance);
+
+    window.speechSynthesis.speak(wordUtterance);
+  }
+
   function checkSpellingAttempt(attemptedSpelling) {
     if (attemptedSpelling === targetWord.word) {
       window.alert(
         "You are technically correct! This is the best kind of correct!"
       );
-      setTargetWord(sample(WORDS));
+      const newWordObject = (sample(WORDS));
+      setTargetWord(newWordObject);
       setCountCorrectSpellings(countCorrectSpellings + 1);
       setCorrectSpellingStreakLength(correctSpellingStreakLength + 1);
+      speakPrompt(newWordObject)
     } else {
       window.alert(
         `Alas, "${attemptedSpelling}" is not the correct spelling of "${targetWord.WORDS}".`
