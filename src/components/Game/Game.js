@@ -1,4 +1,6 @@
 
+import CorrectBanner from "../CorrectBanner";
+import WrongBanner from "../WrongBanner";
 import Prompt from "../Prompt";
 import SpellingAttemptForm from "../SpellingAttemptForm";
 import Statistics from "../Statistics";
@@ -12,6 +14,7 @@ function Game() {
   const [countCorrectSpellings, setCountCorrectSpellings] = React.useState(0);
   const [correctSpellingStreakLength, setCorrectSpellingStreakLength] =
     React.useState(0);
+  const [gameStatus, setGameStatus] = React.useState("running");
 
   function speakPrompt(wordObject) {
 
@@ -26,25 +29,28 @@ function Game() {
 
   function checkSpellingAttempt(attemptedSpelling) {
     if (attemptedSpelling === targetWord.word) {
-      window.alert(
-        "You are technically correct! This is the best kind of correct!"
-      );
-      const newWordObject = (sample(WORDS));
-      setTargetWord(newWordObject);
+      setGameStatus("spelled-correctly");
       setCountCorrectSpellings(countCorrectSpellings + 1);
       setCorrectSpellingStreakLength(correctSpellingStreakLength + 1);
-      speakPrompt(newWordObject)
     } else {
-      window.alert(
-        `Alas, "${attemptedSpelling}" is not the correct spelling of "${targetWord.WORDS}".`
-      );
+      setGameStatus("spelled-incorrectly");
       setCorrectSpellingStreakLength(0);
     }
   }
+
+  function nextWord() {
+    const newWordObject = (sample(WORDS));
+    setTargetWord(newWordObject);
+    setGameStatus("running");
+    speakPrompt(newWordObject)
+  }
+
   return (
     <>
       <Prompt targetWordObject={targetWord} />
       <SpellingAttemptForm attemptSpellingFunction={checkSpellingAttempt} />
+      {gameStatus === 'spelled-correctly' && (<CorrectBanner correctWordObject={targetWord} nextWord={nextWord}/>)}
+      {gameStatus === 'spelled-incorrectly' && (<WrongBanner correctWordObject={targetWord} nextWord={nextWord}/>)}
       <Statistics
         countCorrectSpellings={countCorrectSpellings}
         correctSpellingStreakLength={correctSpellingStreakLength}
